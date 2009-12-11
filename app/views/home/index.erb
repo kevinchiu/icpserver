@@ -3,4 +3,16 @@
 <%= @map.to_html %>
 </head><body>
 <%= @map.div(:width => 800, :height => 600) %>
+<p>
+<% form_for :target, @target, :url => {:controller => "target", :action => "create"} do |f| %>
+	<%= f.text_field :lat, :value => "42.360799" %> lat <br>
+	<%= f.text_field :lng, :value => "-71.08768" %> lng <br>
+	<%= f.text_field :theta %> theta <br>
+	<%= f.text_field :phi %> phi <br>
+	<%= f.text_field :psi %> psi <br>
+	<%= submit_tag 'Create'%>
+<% end %>
+</p>
+
+
 </body></html>
