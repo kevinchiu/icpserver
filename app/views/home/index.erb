@@ -14,5 +14,18 @@
 <% end %>
 </p>
 
+<script type="text/javascript">
+
+function fill_lat_lng() {
+	var lat = gApplication.getMap().getCenter().lat()
+	var lng = gApplication.getMap().getCenter().lng()
+	document.getElementById('target_lat').value = lat
+	document.getElementById('target_lng').value = lng
+}
+
+document.getElementById('map_div').onmouseup = fill_lat_lng()
+
+	
+</script>
 
 </body></html>

@@ -5,8 +5,8 @@ class HomeController < ApplicationController
     @map.control_init(:large_map => true,:map_type => true)
     
     if targets.size > 0
-      lat = targets.first.lat
-      lng = targets.first.lng
+      lat = targets.last.lat
+      lng = targets.last.lng
     else
       lat = 42.360799
       lng = -71.08768
