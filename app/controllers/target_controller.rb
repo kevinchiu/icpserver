@@ -2,13 +2,16 @@ class TargetController < ApplicationController
   def create
     target = Target.new params[:target]
     clean(target)
-    Target.delete_all
     target.save!
     redirect_to :controller => 'home', :action => 'index'
   end
   
   def index
     @targets = Target.all
+  end
+  
+  def clear
+    Target.delete_all
   end
   
   private

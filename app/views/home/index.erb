@@ -7,24 +7,29 @@
 	</style>
 	
 	<script type="text/javascript">
+	var lat = <%=@lat-%>;
+	var lng = <%=@lng-%>;
+	var latlng = new GLatLng(lat,lng);
 	var map;
 	window.onload = addCodeToFunction(window.onload,function() {
-	if (GBrowserIsCompatible()) {
-	map = new GMap2(document.getElementById("map_div"));
-	map.setCenter(new GLatLng(42.360799,-71.08768),15);map.addOverlay(addInfoWindowToMarker(new GMarker(new GLatLng(42.360799,-71.08768),{title : "Target"}),"lat: 42.360799<br>lng: -71.08768<br>theta: 0.0<br>phi: 0.0<br>psi: 0.0<br>",{}));map.addControl(new GLargeMapControl());
-	map.addControl(new GMapTypeControl());
-	
-	GEvent.addListener(map, "click", function(overlay, point){
-		 map.clearOverlays(); 	
-		 if (point) {
-		 map.addOverlay(new GMarker(point));
-		 map.panTo(point);
-		 document.getElementById("target_lat").value = point.lat(); //models field name 
-		 document.getElementById("target_lng").value = point.lng(); //models field name
-		 }
-	});
-	
-	}
+		if (GBrowserIsCompatible()) {
+			map = new GMap2(document.getElementById("map_div"));
+			
+			map.setCenter(latlng,15);
+			map.addOverlay(addInfoWindowToMarker(new GMarker(latlng,{title : "Target"}),"",{}));
+			map.addControl(new GLargeMapControl());
+			map.addControl(new GMapTypeControl());
+			
+			GEvent.addListener(map, "click", function(overlay, point){
+				 if (point) {
+					map.addOverlay(new GMarker(point));
+				 	document.getElementById("target_lat").value = point.lat();
+				 	document.getElementById("target_lng").value = point.lng();
+				 } else {
+					
+				}
+			});
+		}
 	});
 	</script>
 
@@ -41,10 +46,5 @@
 <% end %>
 </p>
 
-
-<script type="text/javascript">
-	map = new GMap2(document.getElementById("map_div"));
-	
-</script>
 
 </body></html>

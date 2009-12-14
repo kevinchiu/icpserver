@@ -5,20 +5,19 @@ class HomeController < ApplicationController
     @map.control_init(:large_map => true,:map_type => true)
     
     if targets.size > 0
-      lat = targets.last.lat
-      lng = targets.last.lng
+      @lat = targets.last.lat
+      @lng = targets.last.lng
     else
-      lat = 42.360799
-      lng = -71.08768
+      @lat = 42.360799
+      @lng = -71.08768
     end
-    
-    @map.center_zoom_init([lat, lng], 15)
-    
+  
     for target in targets do
       add_to_map(target)
     end
     
     @target = Target.new #probably don't need this
+    @targets = targets
   end
   
   private
@@ -28,7 +27,7 @@ class HomeController < ApplicationController
     lng = target.lng
     message = target_info(lat, lng, target.theta, target.phi, target.psi) 
     marker = GMarker.new([lat, lng],:title => "Target", :info_window => message)
-    @map.overlay_init(marker)
+    @map.overlay_add(marker)
   end
   
   def target_info(lat, lng, theta, phi, psi)
