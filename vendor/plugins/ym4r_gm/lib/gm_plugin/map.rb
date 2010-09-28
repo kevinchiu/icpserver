@@ -277,6 +277,17 @@ module Ym4r
       def create
         "new GMap2(document.getElementById(\"#{@container}\"))"
       end
+      
+      #Bind click event to target_lat target_lng
+      def bind_lat_lng_to_click
+        "GEvent.addListener(map, 'click', function(overlay, point){
+    			 if (point) {
+    				map.addOverlay(new GMarker(point));
+    			 	document.getElementById('target_lat').value = point.lat();
+    			 	document.getElementById('target_lng').value = point.lng();
+    			 }
+    		});"
+      end
     end
   end
 end

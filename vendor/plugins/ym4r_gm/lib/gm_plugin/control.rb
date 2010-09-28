@@ -1,5 +1,6 @@
 module Ym4r
   module GmPlugin
+    
     #Small map control. Report to the Google Maps API documentation for details.
     class GSmallMapControl
       include MappingObject
